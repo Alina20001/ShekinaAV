@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Авторизация</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <script th:src="@{/css/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lightpick.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="container">
+    <img th:src="@{/css/img/user1.png}">
+    <div th:if="${param.error}">
+        Неверный логин или пароль.
+    </div>
+    <div th:if="${param.logout}">
+        Вы вышли из системы.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div><label> <input class="inp" type="text" name="username" placeholder="Логин" required/> </label></div>
+        <div><label> <input class="inp" type="password" name="password" placeholder="Пароль" required/> </label></div>
+        <button class="button" type="submit">Войти</button>
+        <div><a th:href="@{/signUp}">Зарегистрироваться</a></div><br/>
+    </form>
+</div>
+</body>
+</html>

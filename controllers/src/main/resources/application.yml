@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  thymeleaf:
+    mode: HTML5
+    enabled: true
+    content-type: text/html
+  application:
+    name: "my-first-spring-boot-application"
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  http:
+     encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+     multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB

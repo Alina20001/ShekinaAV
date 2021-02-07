@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:height="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Бронирование</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <script th:src="@{/css/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lightpick.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/mainResultSearch.css}">
+
+</head>
+<body>
+
+<div class="backLayer">
+
+    <h1 class="title">Результаты поиска</h1>
+
+</div>
+
+</div>
+<div class="mainContent">
+
+    <table class="table">
+        <thead class="thead-purple">
+        <th scope="col">Информация о номерах</th>
+        <th scope="col"></th>
+        </thead>
+
+        <tr style="background-color: #CCCC; color: #8E064B" class="tr-content" th:each="room: ${rooms}">
+            <td th:text="'Тип номера : ' +${room.getSeatsAmount()}"></td>
+            <td th:text="'Стоимость : ' +${room.getDayCost()}"></td>
+            <td>
+                <form th:action="@{/facility}">
+                    <button type="submit" style="border-radius: 7px" th:text="' Стиль номера : ' +${room.getTypeRoom().getTypeRoom()}"></button>
+                    <input hidden th:value="${room.getTypeRoom().getId()}" name="typeRoom">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/bookRoom}" method="post">
+                    <input hidden="hidden" name="roomId" th:value="${room.getId()}">
+                    <input hidden="hidden" name="checkIn" type="text" th:value="${checkIn}">
+                    <input hidden="hidden" name="checkOut" type="text" th:value="${checkOut}">
+                    <button class="button" type="submit">Забронировать</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

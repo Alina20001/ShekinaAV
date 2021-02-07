@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hotel</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <script th:src="@{/css/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lightpick.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/mainException.css}">
+</head>
+<body>
+    <div class="backLayer">
+      <h1 class="title rubberBand">Извините! Что-то пошло не так!</h1>
+        <h3 th:text="${e}"></h3>
+      <h3>Нажмите кнопку, чтобы вернуться на главную страницу</h3>
+      <a th:href="@{/hotel}"><button class="btn btn-danger" type="button">Главная</button></a>
+    </div>
+</body>
+</html>

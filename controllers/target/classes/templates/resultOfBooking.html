@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Бронирование</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <script th:src="@{/css/js/wow.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <script th:src="@{/css/js/wow.min.js}"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lightpick.css}">
+    <link rel="stylesheet" type="text/css" href="css/lightpick.css">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/resultOfBooking.css}">
+    <link rel="stylesheet" href="css/fontawesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/resultOfBooking.css">
+
+</head>
+<body>
+
+<div class="backLayer">
+
+    <h3 class="title">Аренда автомобилей </h3>
+    <div class="mainContent" style="width: 60%; margin: 47px auto">
+        <form method="post" th:action="@{/addService}">
+            <table class="table">
+                <thead class="thead-purple" align="center">
+                <th scope="col">Модель</th>
+                <th scope="col">Стоимость</th>
+                <th scope="col">Арендовать</th>
+                </thead>
+
+                <tr style="background-color: #CCCC; color: #8E064B" align="center" class="tr-content tr" th:each="car: ${cars}">
+                    <td>
+                        <div>
+                            <span style="color: #8E064B" th:text="${car.getMark()}"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="tr-content">
+                            <input class="inpu amount" disabled="true" style="color: #8E064B" th:value="${car.getPrice()}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="tr-content">
+                            <input type="checkbox" th:name="carId+${car.getId()}" th:value="${car.getId()}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td width="30%" align="center">
+                            <button class="button" style="border: 1px solid #400927" type="submit">Подтвердить</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script th:inline="javascript">
+        $(document).ready(function (qualifiedName, value) {
+            $('.table').find('input').each(function () {
+                $(this).on('change',function () {
+                    calculateAmount($('.tr'));
+                })
+            })
+        });
+        function calculateAmount(inputs){
+            let sum = 0;
+            inputs.each(function () {
+                if ($(this).find('input[type="checkbox"]').prop("checked") === true){
+                    sum += Number($(this).find("input.amount").val());
+                }
+            });
+            $('input.inp').val(sum);
+        }
+    </script>
+
+</div>
+</body>
+</html>

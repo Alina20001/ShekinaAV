@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Личный кабинет</title>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="css/animate.css">
+    <script th:src="@{/js/wow.min.js}"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lightpick.css}">
+    <link rel="stylesheet" type="text/css" href="css/lightpick.css">
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/personalArea.css}">
+    <link rel="stylesheet" href="css/fontawesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/personalArea.css">
+</head>
+
+<body>
+<div class="backLayer">
+    <a th:href="@{/hotel}"></a>
+    <h1 class="title">Профиль</h1>
+    <div align="center">
+
+        <form th:action="@{/personalArea/update}" method="post">
+            <table>
+                <tr>
+                    <div>
+                        <td>
+                            <label class="field">Почта</label>
+                        </td>
+                        <td>
+                            <input disabled="true" class="inp" type="text" name="email"
+                                   th:value="${user.getEmail()}"/>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                        <td>
+                            <label class="field">Фамилия</label>
+                        </td>
+                        <td>
+                            <input class="inp" name="surname"
+                                   th:value="${user.getSurname()}"/>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                        <td>
+                            <label class="field">Имя</label>
+                        </td>
+                        <td>
+                            <input class="inp" type="text" name="name"
+                                   th:value="${user.getName()}"/>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                        <td>
+                            <label class="field">Пароль</label>
+                        </td>
+                        <td>
+                            <input disabled="true" class="inp" type="text" name="password"
+                                   th:value="${user.getPassword()}"/>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <div>
+                        <td>
+                            <label class="field">Телефон</label>
+                        </td>
+                        <td>
+                            <input class="inp" type="text" name="phone"
+                                   th:value="${user.getPhone()}"/>
+                        </td>
+                    </div>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><div><input class="button" type="submit" value="Изменить"/></div></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead class="thead-purple">
+        <th scope="col">Общая информация</th>
+
+        </thead>
+
+        <tr class="tr-content" style="background-color: #CCCC; color: #8E064B" th:each="residence: ${residences}">
+            <td>
+                <div>
+                    <span th:text="'Номер : ' + ${residence.getRoom().getId()}"></span>
+                </div>
+                <div th:each="car : ${residence.getCarRentSet()}">
+                    <span th:text="'Аренда автомобиля : ' + ${car.getCar().getMark()}"></span>
+                </div>
+
+            <div><span th:text="'Стоимость : ' + ${residence.getAmount()}"></span></div>
+            <div><span th:text="'Дата бронирования : ' + ${residence.getArrival()} + ' ' + ${residence.getDeparture()}"></span></div>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${activeResidence} != null">
+        <form th:action="@{/residence/checkOut}" method="post">
+            <button class="buttonCheckOut" type="submit">Отменить заявку на бронирование</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

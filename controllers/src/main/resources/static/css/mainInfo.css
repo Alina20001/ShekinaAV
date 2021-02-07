@@ -1,0 +1,77 @@
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "ArimaKoshi-Light";
+  src: url('founts/ArimaKoshi-Light.otf');
+}
+
+body{
+  margin: 0;
+  background-image: url('img/bg.jpg');
+  background-color: #464646;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h2{
+  font-weight: bold;
+  color: #8E064B;
+  font-family: "ArimaKoshi-Light";
+  font-size: 40px;
+  text-align: center;
+  background-size: auto;
+  border-radius: 10px;
+}
+
+div .roomsInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 100px;
+
+}
+
+div .infoBlock{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.image > img{
+  width: 576px;
+  height: 324px;
+  margin: 20px;
+  border: 2px solid #8E064B;
+  border-radius: 10px;
+  transition: 0.6s;
+}
+
+.text{
+  padding: 10px;
+  color: black;
+  font-family: "ArimaKoshi-Light";
+}
+
+.text-right{
+  margin: 0 0 0 100px;
+  text-align: right;
+  border-left: 10px solid gray;
+}
+
+.text-left{
+  margin: 0 100px 0 0;
+  text-align: left;
+  border-right: 10px solid gray;
+}
+
+img:hover{
+  width: 691px;
+  height: 388px;
+  transition: 0.6s;
+}
+
+.backLayer{
+  background-color: #CCCC;
+}

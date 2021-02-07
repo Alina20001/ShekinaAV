@@ -1,0 +1,30 @@
+body{
+    padding: 30px;
+}
+
+.formWrapper {
+    box-shadow: 0 0 1px #eeeeee;
+    border-radius: 7px;
+    padding: 20px;
+}
+
+.formWrapper > form > div > input {
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+.adminFormLabel {
+    width: 200px;
+}
+
+.adminFormTitle {
+    font-weight: bold;
+}
+
+.adminBtn {
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 35px;
+    color: #fff;
+    background-color: #a03c55;
+}
